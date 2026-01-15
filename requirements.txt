@@ -1,0 +1,12 @@
+# No external dependencies required
+# This project uses only Python standard library modules:
+# - os
+# - sys
+# - argparse
+# - zipfile
+# - tarfile
+# - json
+# - pathlib
+# - typing
+
+# Minimum Python version: 3.6
