@@ -1,6 +1,6 @@
 # The HART-Morphosis: A Blueprint for Bio-Cosmological Image Synthesis
 
-This theoretical framework moves beyond standard diffusion models by fusing **Hybrid Autoregressive Transformers (HART)** with principles of biological morphogenesis and cosmological structure growth. By replacing massive parameter counts with recursive natural laws, we can create a SOTA generator capable of running locally on low-power devices while maintaining “infinite” resolution through fractal encoding.
+This theoretical framework moves beyond standard diffusion models by fusing **Hybrid Autoregressive Transformers (HART)** with principles of biological morphogenesis and cosmological structure growth. By replacing massive parameter counts with recursive natural laws, we can create a state-of-the-art generator capable of running locally on low-power devices while maintaining fractal-style, effectively unbounded resolution through recursive encoding.
 
 ## The Three Pillars of Unconventional Synthesis
 
@@ -22,13 +22,13 @@ Instead of learning every pixel, the generator uses **Neural Cellular Automata (
 
 ## The Edge of Research: Unconventional Connections
 
-- **Fractal Geometry**: Using recursive simplicity to generate infinite resolution from a 700M parameter base.
+- **Fractal Geometry**: Using recursive simplicity to generate effectively unbounded resolution from a 700M parameter base.
 - **Holographic Principle**: Encoding 3D world knowledge into 2D latent spaces using information-density laws.
 - **Reaction-Diffusion Steganography**: Capturing leftover high-frequency details (eyes, hair) that discrete tokens miss.
 - **Residual Token Hybrids**: Hiding and extracting data within self-organizing patterns for secure, high-speed generation.
 
 ## Explore the Foundations
 
-- **MIT’s HART Architecture**: Learn how Hybrid Autoregressive Transformers generate SOTA images 9× faster on smartphones.
+- **MIT’s HART Architecture**: Learn how Hybrid Autoregressive Transformers generate state-of-the-art images 9× faster on smartphones.
 - **Neural Cosmic Web**: Discover the quantitative similarities between brain networks and the large-scale structure of the universe.
 - **Quantum Denoising**: Explore standalone quantum-inspired algorithms that use Schrödinger’s equation for signal filtering.
