@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
+from PIL import Image
 import streamlit as st
 import torch
 
@@ -22,7 +23,7 @@ def prompt_to_seed(prompt: str) -> int:
 
 
 @st.cache_data(show_spinner=False)
-def generate_image(prompt: str, zoom: int, seed: int | None) -> "Image.Image":
+def generate_image(prompt: str, zoom: int, seed: int | None) -> Image.Image:
     resolved_seed = seed if seed is not None else prompt_to_seed(prompt)
     torch.manual_seed(resolved_seed)
 

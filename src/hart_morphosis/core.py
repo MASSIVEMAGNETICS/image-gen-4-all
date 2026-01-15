@@ -34,6 +34,8 @@ class HART(nn.Module):
         if x.dim() != 4:
             raise ValueError("Expected input with shape [batch, height, width, channels].")
         batch, height, width, channels = x.shape
+        if channels != self.d_model:
+            raise ValueError(f"Expected input channels to match d_model={self.d_model}.")
         x = self.encoder(x.reshape(batch, height * width, channels))
         x = x.reshape(batch, height, width, channels)
         return torch.sigmoid(self.proj(x))
@@ -98,7 +100,7 @@ class FractalRenderer:
 
     def render_zoom_level(self, base_grid: torch.Tensor, zoom_level: int = 1) -> torch.Tensor:
         if zoom_level < 1:
-            raise ValueError("zoom_level must be >= 1")
+            raise ValueError("zoom_level must be an integer >= 1")
         scale = 2**zoom_level
         grid = base_grid
         if grid.dim() == 2:
