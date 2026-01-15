@@ -22,8 +22,7 @@ def build_image(prompt: str, zoom: int, seed: int | None, output: str) -> None:
     morpho = MorphogenesisEngine(grid_size=(16, 16))
     pattern = morpho.generate_pattern(steps=50, seed=resolved_seed)
 
-    base_state = pattern.unsqueeze(-1).repeat(1, 1, 16)
-    base_state = base_state.unsqueeze(0)
+    base_state = pattern.unsqueeze(-1).repeat(1, 1, 16).unsqueeze(0)
 
     model = HART(d_model=16, num_layers=4)
     with torch.no_grad():

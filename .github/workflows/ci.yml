@@ -66,8 +66,4 @@ jobs:
             .gitignore
             LICENSE
             README.md
-            requirements.txt
             pyproject.toml
-            web_ui/app.py
-            src/hart_morphosis/core/*.py
-            web_ui/requirements.txt
