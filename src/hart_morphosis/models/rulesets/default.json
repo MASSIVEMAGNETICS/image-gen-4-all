@@ -1,0 +1,17 @@
+{
+  "morphogenesis": {
+    "feed_rate": 0.04,
+    "kill_rate": 0.06,
+    "diffusion_a": 1.0,
+    "diffusion_b": 0.5
+  },
+  "cosmology": {
+    "gravity": 1.0,
+    "time_step": 0.05,
+    "cluster_mass": 1.0
+  },
+  "fractal": {
+    "base_resolution": [16, 16],
+    "zoom_multiplier": 2
+  }
+}

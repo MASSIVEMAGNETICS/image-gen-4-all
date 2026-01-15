@@ -1,0 +1,72 @@
+name: CI/CD to Hugging Face Spaces
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install torch numpy pillow scipy streamlit
+
+      - name: Test CLI
+        run: |
+          python -m src.hart_morphosis.cli.main --prompt "test" --zoom 1 --output test.png
+          ls -la test.png
+
+      - name: Test Web UI
+        run: |
+          cd web_ui
+          python -c "from app import app; print('Web UI import OK')"
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install torch numpy pillow scipy streamlit
+
+      - name: Deploy to Hugging Face Spaces
+        uses: HuggingFace/huggingface_hub-action@v0.1
+        with:
+          endpoint: https://huggingface.co
+          token: ${{ secrets.HF_TOKEN }}
+          space_name: VictorSSI/HART-Morphosis
+          space_sdk: streamlit
+          path: .
+          ignore: |
+            .git
+            __pycache__
+            .github
+            notebooks
+            docs
+            tests
+            .gitignore
+            LICENSE
+            README.md
+            pyproject.toml
