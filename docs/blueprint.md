@@ -13,11 +13,11 @@ This theoretical framework fuses **Hybrid Autoregressive Transformers (HART)** w
 Instead of learning every pixel, the generator uses **Neural Cellular Automata (NCA)** and **Reaction-Diffusion (RD)** systems.
 
 - **Local Interactions**: Just as a leopard’s spots or a zebra’s stripes emerge from local chemical reactions (Turing patterns), the generator uses simple rules to grow complex textures from a compact seed.
-- **Efficiency**: This approach hypothetically reduces parameters by ~90% (speculative estimate) by storing growth rules rather than visual features.
+- **Efficiency**: This approach hypothetically reduces parameters by ~90% by storing growth rules rather than visual features (speculative estimate).
 
 ### Bio-Inspired Mechanisms
 
-- **Fibroblast Interaction**: Modeling pixel correlation after fibroblasts, where each unit only interacts with its immediate neighbors to maintain structural integrity.
+- **Fibroblast Interaction**: Modeling pixel correlation after fibroblasts (connective tissue cells), where each unit only interacts with its immediate neighbors to maintain structural integrity.
 - **Cephalopod Wavefronts**: Simulating moving-wave skin patterns for temporal consistency in video/dynamic image generation.
 
 ## The Edge of Research: Unconventional Connections
