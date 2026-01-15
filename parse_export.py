@@ -66,7 +66,7 @@ class ExportParser:
                         results.append(file_data)
                         
                         # Extract the file
-                        if self.output_dir:
+                        if self.output_dir is not None:
                             zip_ref.extract(file_info.filename, self.output_dir)
                             
         except zipfile.BadZipFile:
@@ -97,7 +97,7 @@ class ExportParser:
                         results.append(file_data)
                         
                         # Extract the file
-                        if self.output_dir:
+                        if self.output_dir is not None:
                             tar_ref.extract(member, self.output_dir)
                             
         except tarfile.TarError as e:
@@ -118,7 +118,7 @@ class ExportParser:
             sys.exit(1)
             
         # Create output directory if needed
-        if self.output_dir:
+        if self.output_dir is not None:
             os.makedirs(self.output_dir, exist_ok=True)
             
         # Determine file type and parse accordingly
@@ -173,7 +173,9 @@ class ExportParser:
             'files': self.instruct_files
         }
         
-        os.makedirs(os.path.dirname(manifest_path), exist_ok=True)
+        manifest_dir = os.path.dirname(manifest_path)
+        if manifest_dir:
+            os.makedirs(manifest_dir, exist_ok=True)
         
         with open(manifest_path, 'w') as f:
             json.dump(manifest, f, indent=2)
