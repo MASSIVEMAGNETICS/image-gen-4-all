@@ -84,7 +84,7 @@ class CosmologicalStructureModule:
         trajectory = [positions.clone()]
         for _ in range(steps):
             diff = positions[:, None, :] - positions[None, :, :]
-            dist_sq = diff.pow(2).sum(-1).clamp_min(1e-3)
+            dist_sq = diff.pow(2).sum(-1).clamp_min(1e-2)
             force = -self.G * diff / dist_sq.unsqueeze(-1)
             net_force = force.sum(dim=1)
             positions = (positions + 0.05 * net_force).clamp(0.0, 1.0)
