@@ -13,7 +13,7 @@ This theoretical framework fuses **Hybrid Autoregressive Transformers (HART)** w
 Instead of learning every pixel, the generator uses **Neural Cellular Automata (NCA)** and **Reaction-Diffusion (RD)** systems.
 
 - **Local Interactions**: Just as a leopard’s spots or a zebra’s stripes emerge from local chemical reactions (Turing patterns), the generator uses simple rules to grow complex textures from a compact seed.
-- **Efficiency**: This is described as a hypothetical, illustrative ~90% parameter reduction (a conceptual estimate with no benchmark yet) because the model only needs to store the “rules of growth” rather than the resulting visual features.
+- **Efficiency**: This approach hypothetically reduces parameters by ~90% (conceptual estimate) by storing growth rules rather than visual features.
 
 ### Bio-Inspired Mechanisms
 
@@ -22,7 +22,7 @@ Instead of learning every pixel, the generator uses **Neural Cellular Automata (
 
 ## The Edge of Research: Unconventional Connections
 
-- **Fractal Geometry**: Using recursive simplicity to generate effectively unbounded resolution from a hypothetical baseline model (illustrative placeholder only).
+- **Fractal Geometry**: Using recursive simplicity to generate effectively unbounded resolution through fractal principles.
 - **Holographic Principle**: Encoding 3D world knowledge into 2D latent spaces using information-density laws.
 - **Reaction-Diffusion Steganography**: Capturing leftover high-frequency details (eyes, hair) that discrete tokens miss.
 - **Residual Token Hybrids**: Hiding and extracting data within self-organizing patterns for secure, high-speed generation.
@@ -31,6 +31,6 @@ Instead of learning every pixel, the generator uses **Neural Cellular Automata (
 
 These topics are intended as research directions rather than established resources in this repository. Add citations or links as sources are curated.
 
-- **MIT’s HART Architecture**: Investigate claims about Hybrid Autoregressive Transformers achieving smartphone-friendly throughput.
+- **MIT’s HART Architecture**: Review Hybrid Autoregressive Transformer research for smartphone-friendly throughput.
 - **Neural Cosmic Web**: Explore literature on similarities between brain networks and large-scale structure formation.
 - **Quantum Denoising**: Review quantum-inspired denoising algorithms that use Schrödinger-style formulations for signal filtering.
