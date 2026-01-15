@@ -13,7 +13,7 @@ This theoretical framework fuses **Hybrid Autoregressive Transformers (HART)** w
 Instead of learning every pixel, the generator uses **Neural Cellular Automata (NCA)** and **Reaction-Diffusion (RD)** systems.
 
 - **Local Interactions**: Just as a leopard’s spots or a zebra’s stripes emerge from local chemical reactions (Turing patterns), the generator uses simple rules to grow complex textures from a compact seed.
-- **Efficiency**: This is described as a hypothetical, illustrative ~90% parameter reduction because the model only needs to store the “rules of growth” rather than the resulting visual features.
+- **Efficiency**: This is described as a hypothetical, illustrative ~90% parameter reduction (a conceptual estimate with no benchmark yet) because the model only needs to store the “rules of growth” rather than the resulting visual features.
 
 ### Bio-Inspired Mechanisms
 
@@ -29,7 +29,7 @@ Instead of learning every pixel, the generator uses **Neural Cellular Automata (
 
 ## Explore the Foundations
 
-These prompts are intended as research directions rather than established resources in this repository. Add citations or links as sources are curated.
+These topics are intended as research directions rather than established resources in this repository. Add citations or links as sources are curated.
 
 - **MIT’s HART Architecture**: Investigate claims about Hybrid Autoregressive Transformers achieving smartphone-friendly throughput.
 - **Neural Cosmic Web**: Explore literature on similarities between brain networks and large-scale structure formation.
