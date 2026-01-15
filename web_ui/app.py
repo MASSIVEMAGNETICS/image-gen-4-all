@@ -49,13 +49,17 @@ def app() -> None:
     seed_input = st.text_input("Seed (optional)", value="")
 
     seed = None
+    seed_error = False
     if seed_input.strip():
         try:
             seed = int(seed_input.strip())
         except ValueError:
+            seed_error = True
             st.error("Seed must be an integer.")
 
     if st.button("Generate"):
+        if seed_error:
+            return
         image = generate_image(prompt, zoom, seed)
         st.image(image, caption=f"Zoom level {zoom}")
 
