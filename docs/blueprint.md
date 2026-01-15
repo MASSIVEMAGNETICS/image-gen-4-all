@@ -1,6 +1,6 @@
 # The HART-Morphosis: A Blueprint for Bio-Cosmological Image Synthesis
 
-This theoretical framework moves beyond standard diffusion models by fusing **Hybrid Autoregressive Transformers (HART)** with principles of biological morphogenesis and cosmological structure growth. By replacing massive parameter counts with recursive natural laws, we can create a state-of-the-art generator capable of running locally on low-power devices while maintaining fractal-style, effectively unbounded resolution through recursive encoding.
+This theoretical framework moves beyond standard diffusion models by fusing **Hybrid Autoregressive Transformers (HART)** with principles of biological morphogenesis and cosmological structure growth. It replaces massive parameter counts with recursive natural laws. The goal is a state-of-the-art generator capable of running locally on low-power devices while maintaining fractal-style, effectively unbounded resolution through recursive encoding.
 
 ## The Three Pillars of Unconventional Synthesis
 
@@ -13,7 +13,7 @@ This theoretical framework moves beyond standard diffusion models by fusing **Hy
 Instead of learning every pixel, the generator uses **Neural Cellular Automata (NCA)** and **Reaction-Diffusion (RD)** systems.
 
 - **Local Interactions**: Just as a leopard’s spots or a zebra’s stripes emerge from local chemical reactions (Turing patterns), the generator uses simple rules to grow complex textures from a compact seed.
-- **Efficiency**: This reduces parameter weight by 90% because the model only needs to store the “rules of growth” rather than the resulting visual features.
+- **Efficiency**: This is described as a theoretical ~90% parameter reduction because the model only needs to store the “rules of growth” rather than the resulting visual features.
 
 ### Bio-Inspired Mechanisms
 
@@ -22,7 +22,7 @@ Instead of learning every pixel, the generator uses **Neural Cellular Automata (
 
 ## The Edge of Research: Unconventional Connections
 
-- **Fractal Geometry**: Using recursive simplicity to generate effectively unbounded resolution from a 700M parameter base.
+- **Fractal Geometry**: Using recursive simplicity to generate effectively unbounded resolution from a hypothetical 700M-parameter baseline (illustrative placeholder).
 - **Holographic Principle**: Encoding 3D world knowledge into 2D latent spaces using information-density laws.
 - **Reaction-Diffusion Steganography**: Capturing leftover high-frequency details (eyes, hair) that discrete tokens miss.
 - **Residual Token Hybrids**: Hiding and extracting data within self-organizing patterns for secure, high-speed generation.
