@@ -21,6 +21,7 @@ def prompt_to_seed(prompt: str) -> int:
     return int(digest[:8], 16)
 
 
+@st.cache_data(show_spinner=False)
 def generate_image(prompt: str, zoom: int, seed: int | None) -> "Image.Image":
     resolved_seed = seed if seed is not None else prompt_to_seed(prompt)
     torch.manual_seed(resolved_seed)

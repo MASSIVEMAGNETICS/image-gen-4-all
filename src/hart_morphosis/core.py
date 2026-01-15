@@ -16,14 +16,26 @@ class HART(nn.Module):
 
     def __init__(self, d_model: int = 16, nhead: int = 4, num_layers: int = 6) -> None:
         super().__init__()
+        if d_model % nhead != 0:
+            raise ValueError("d_model must be divisible by nhead.")
         self.d_model = d_model
         self.nhead = nhead
         self.num_layers = num_layers
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=d_model,
+            nhead=nhead,
+            dim_feedforward=d_model * 2,
+            batch_first=True,
+        )
+        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         self.proj = nn.Linear(d_model, 3)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         if x.dim() != 4:
             raise ValueError("Expected input with shape [batch, height, width, channels].")
+        batch, height, width, channels = x.shape
+        x = self.encoder(x.reshape(batch, height * width, channels))
+        x = x.reshape(batch, height, width, channels)
         return torch.sigmoid(self.proj(x))
 
 
@@ -70,7 +82,7 @@ class CosmologicalStructureModule:
         trajectory = [positions.clone()]
         for _ in range(steps):
             diff = positions[:, None, :] - positions[None, :, :]
-            dist_sq = diff.pow(2).sum(-1) + 1e-6
+            dist_sq = diff.pow(2).sum(-1).clamp_min(1e-3)
             force = -self.G * diff / dist_sq.unsqueeze(-1)
             net_force = force.sum(dim=1)
             positions = (positions + 0.05 * net_force).clamp(0.0, 1.0)
@@ -85,8 +97,8 @@ class FractalRenderer:
         self.base_resolution = tuple(base_resolution)
 
     def render_zoom_level(self, base_grid: torch.Tensor, zoom_level: int = 1) -> torch.Tensor:
-        if zoom_level < 0:
-            raise ValueError("zoom_level must be >= 0")
+        if zoom_level < 1:
+            raise ValueError("zoom_level must be >= 1")
         scale = 2**zoom_level
         grid = base_grid
         if grid.dim() == 2:
