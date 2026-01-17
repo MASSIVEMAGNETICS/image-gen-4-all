@@ -31,6 +31,8 @@ python -m src.hart_morphosis.cli.main --prompt "face in galaxy" --zoom 4
 ## 📚 Table of Contents
 
 - [Architecture Overview](architecture.md)
+- [Blueprint](blueprint.md)
+- [Research Roadmap](research_roadmap.md)
 - [API Reference](api_reference.md)
 - [Examples](examples.md)
 - [Contributing](contributing.md)
