@@ -37,6 +37,7 @@ Deliver an end-to-end system that can:
 - Build a **multi-scale refinement pipeline** (coarse → detail passes).
 
 ### Phase 2 — Video Generation Core (6–8 weeks)
+Focus on temporal consistency, motion control, and export-ready video packaging.
 - Add **temporal morphogenesis** (frame-to-frame continuity).
 - Support **keyframe + motion constraints** and camera paths.
 - Export **MP4/WebM** with optional audio sync pipeline.
