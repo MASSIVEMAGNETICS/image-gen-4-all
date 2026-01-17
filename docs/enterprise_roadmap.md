@@ -1,6 +1,6 @@
 # Enterprise-Grade Review & Next-Gen Roadmap
 
-This document **scans, analyzes, and reviews** the current repository, then proposes a focused development roadmap to evolve HART-Morphosis into a low-compute, enterprise-ready, SOTA image/video generation system with a polished React-based UI.
+This document **scans, analyzes, and reviews** the current repository, then proposes a focused development roadmap to evolve HART-Morphosis into a low-compute, enterprise-ready, state-of-the-art image/video generation system with a polished React-based UI.
 
 ## ✅ Current Scan & Review
 
@@ -54,7 +54,7 @@ Deliver an end-to-end system that can:
 
 ## 🧪 Validation Targets
 
-- **Image latency**: <2s on CPU for 256×256.
+- **Image latency**: <2s on a standard 8-core CPU for 256×256.
 - **Video latency**: <30s for 4s @ 12 FPS on CPU.
 - **Memory**: <1 GB RAM for full pipeline.
 - **Determinism**: same prompt + seed = identical output.
