@@ -49,7 +49,7 @@ Deliver an end-to-end system that can:
 ### Phase 4 — React UI (Parallel, 4–6 weeks)
 - Replace Streamlit with a **React app** (Vite or Next.js).
 - UX goals: prompt editor, gallery history, parameter presets,
-  versioned runs, side-by-side comparisons, and live preview.
+    versioned runs, side-by-side comparisons, and live preview.
 - Provide an **API-first design** that the UI consumes.
 
 ## 🧪 Validation Targets
