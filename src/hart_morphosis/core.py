@@ -2,43 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Iterable, List, Tuple
+from typing import List, Tuple
 
-import numpy as np
-from PIL import Image
 import torch
-from torch import nn
 from torch.nn import functional as F
 
-
-class HART(nn.Module):
-    """Hybrid Autoregressive Transformer (minimal reference implementation)."""
-
-    def __init__(self, d_model: int = 16, nhead: int = 4, num_layers: int = 6) -> None:
-        super().__init__()
-        if d_model % nhead != 0:
-            raise ValueError("d_model must be divisible by nhead.")
-        self.d_model = d_model
-        self.nhead = nhead
-        self.num_layers = num_layers
-        encoder_layer = nn.TransformerEncoderLayer(
-            d_model=d_model,
-            nhead=nhead,
-            dim_feedforward=d_model * 2,
-            batch_first=True,
-        )
-        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
-        self.proj = nn.Linear(d_model, 3)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        if x.dim() != 4:
-            raise ValueError("Expected input with shape [batch, height, width, channels].")
-        batch, height, width, channels = x.shape
-        if channels != self.d_model:
-            raise ValueError(f"Expected input channels to match d_model={self.d_model}.")
-        x = self.encoder(x.reshape(batch, height * width, channels))
-        x = x.reshape(batch, height, width, channels)
-        return torch.sigmoid(self.proj(x))
+# Re-export HART and FractalRenderer from new modular structure
+from .core.harts import HART
+from .core.fractal_renderer import FractalRenderer
 
 
 class MorphogenesisEngine:
@@ -92,32 +63,4 @@ class CosmologicalStructureModule:
         return trajectory
 
 
-class FractalRenderer:
-    """Renders zoom levels by recursively scaling the base grid."""
-
-    def __init__(self, base_resolution: Iterable[int] = (16, 16)) -> None:
-        self.base_resolution = tuple(base_resolution)
-
-    def render_zoom_level(self, base_grid: torch.Tensor, zoom_level: int = 1) -> torch.Tensor:
-        if zoom_level < 1:
-            raise ValueError("zoom_level must be an integer >= 1")
-        scale = 2**zoom_level
-        grid = base_grid
-        if grid.dim() == 2:
-            grid = grid.unsqueeze(-1)
-        grid = grid.to(torch.float32)
-        zoomed = grid.repeat_interleave(scale, dim=0).repeat_interleave(scale, dim=1)
-        return zoomed
-
-    def tensor_to_pil(self, tensor: torch.Tensor) -> Image.Image:
-        array = tensor.detach().cpu()
-        if array.dim() == 2:
-            array = array.unsqueeze(-1)
-        if array.shape[-1] == 1:
-            array = array.repeat(1, 1, 3)
-        array = array.clamp(0, 1).numpy()
-        array = (array * 255).round().astype(np.uint8)
-        return Image.fromarray(array)
-
-    def save_image(self, tensor: torch.Tensor, path: str) -> None:
-        self.tensor_to_pil(tensor).save(path)
+__all__ = ["HART", "FractalRenderer", "MorphogenesisEngine", "CosmologicalStructureModule"]
