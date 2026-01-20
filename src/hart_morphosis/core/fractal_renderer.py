@@ -73,13 +73,12 @@ class FractalRenderer:
         target_height = self.base_resolution[0] * (2 ** zoom_level)
         target_width = self.base_resolution[1] * (2 ** zoom_level)
         
-        # Upsample using bilinear interpolation (or nearest for single channel)
-        mode = "bilinear" if num_channels > 1 else "bilinear"
+        # Upsample using bilinear interpolation
         zoomed = F.interpolate(
             grid,
             size=(target_height, target_width),
-            mode=mode,
-            align_corners=False if mode == "bilinear" else None
+            mode="bilinear",
+            align_corners=False
         )
         
         # Remove batch dimension and return [channels, height, width]

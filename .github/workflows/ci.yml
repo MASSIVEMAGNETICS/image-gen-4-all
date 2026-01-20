@@ -22,7 +22,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install torch numpy pillow scipy streamlit
+          pip install torch numpy pillow scipy streamlit pytest
+
+      - name: Run pytest tests
+        run: |
+          pytest tests/ -v
 
       - name: Test CLI
         run: |

@@ -31,7 +31,7 @@ def generate_image(prompt: str, zoom: int, seed: int | None) -> Image.Image:
     pattern = morpho.generate_pattern(steps=50, seed=resolved_seed)
     base_state = pattern.unsqueeze(-1).repeat(1, 1, 16).unsqueeze(0)
 
-    model = HART(d_model=16, num_layers=4)
+    model = HART(d_model=16, num_layers=2)
     with torch.no_grad():
         refined = model(base_state).squeeze(0)
 
