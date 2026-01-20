@@ -1,4 +1,4 @@
-"""Core HART-Morphosis primitives."""
+"""Core HART-Morphosis primitives - Morphogenesis and Cosmological modules."""
 
 from __future__ import annotations
 
@@ -6,10 +6,6 @@ from typing import List, Tuple
 
 import torch
 from torch.nn import functional as F
-
-# Re-export HART and FractalRenderer from new modular structure
-from .core.harts import HART
-from .core.fractal_renderer import FractalRenderer
 
 
 class MorphogenesisEngine:
@@ -61,6 +57,3 @@ class CosmologicalStructureModule:
             positions = (positions + 0.05 * net_force).clamp(0.0, 1.0)
             trajectory.append(positions.clone())
         return trajectory
-
-
-__all__ = ["HART", "FractalRenderer", "MorphogenesisEngine", "CosmologicalStructureModule"]
