@@ -47,6 +47,93 @@ renderer.save_image(zoomed, "output.png")
 pil_img = renderer.tensor_to_pil(zoomed)
 ```
 
+### `PromptEncoder()`
+**Purpose**: Rule-based encoder that converts a text prompt to `GenerationParams`.
+Maps natural-language keywords (organic, cosmic, water, face, abstract, detail,
+palette colours) to morphogenesis, cosmological, and rendering parameters.
+Fully deterministic — no neural network or external API required.
+
+```python
+from src.hart_morphosis.core import PromptEncoder
+
+encoder = PromptEncoder()
+params = encoder.encode("a detailed face made of trees under a galaxy")
+
+print(params.morphogenesis.steps)       # 100  (detailed rule)
+print(params.cosmological.n_clusters)   # 16   (galaxy rule)
+print(params.d_model)                   # 16
+print(params.seed_offset)               # 0  (no colour keyword)
+```
+
+`GenerationParams` fields:
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `morphogenesis.grid_size` | `(int, int)` | `(32, 32)` | Reaction-diffusion grid |
+| `morphogenesis.steps` | `int` | `50` | Diffusion iterations |
+| `morphogenesis.diffusion_rate` | `float` | `0.2` | Laplacian weight |
+| `cosmological.n_clusters` | `int` | `8` | Gravitational cluster count |
+| `cosmological.G` | `float` | `1.0` | Gravitational constant |
+| `rendering.zoom_level` | `int` | `2` | Default fractal zoom |
+| `rendering.base_resolution` | `(int, int)` | `(32, 32)` | Base render resolution |
+| `d_model` | `int` | `16` | HART channel width |
+| `num_layers` | `int` | `2` | HART layer count |
+| `seed_offset` | `int` | `0` | Added to numeric seed |
+
+---
+
+## REST API (FastAPI backend)
+
+Start the server:
+
+```bash
+uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### `GET /health`
+
+Liveness probe.
+
+**Response** `200 OK`:
+```json
+{ "status": "ok", "version": "1.0.0" }
+```
+
+### `POST /generate`
+
+Generate an image from a text prompt.
+
+**Request body** (JSON):
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `prompt` | `string` | ✅ | Text description (1–500 chars) |
+| `zoom` | `integer` | ✅ | Fractal zoom level (1–6) |
+| `seed` | `integer \| null` | — | Optional RNG seed |
+
+**Response** `200 OK`:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `image_b64` | `string` | Base-64 encoded PNG |
+| `width` | `int` | Image width in pixels |
+| `height` | `int` | Image height in pixels |
+| `seed` | `int` | Resolved seed used |
+| `prompt` | `string` | Echo of input prompt |
+| `latency_ms` | `float` | Server-side generation time |
+
+**Error responses**: `422 Unprocessable Entity` for validation failures,
+`429 Too Many Requests` when rate limit is exceeded.
+
+**Environment variables**:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `RATE_LIMIT_PER_MINUTE` | `30` | Max requests per client IP per minute |
+| `CORS_ORIGINS` | `http://localhost:3000,http://127.0.0.1:3000` | Comma-separated allowed CORS origins |
+
+---
+
 ## CLI Usage
 
 ```bash
@@ -57,9 +144,9 @@ python -m src.hart_morphosis.cli.main \
   --output "result.png"
 ```
 
-## Web UI
+## Web UI (Streamlit)
 
-Launch with:
+Launch the legacy Streamlit prototype:
 
 ```bash
 cd web_ui
@@ -67,3 +154,28 @@ streamlit run app.py
 ```
 
 Access at `http://localhost:8501`
+
+## Next.js UI
+
+The enterprise UI lives in `ui/`. It communicates with the FastAPI backend.
+
+```bash
+# 1. Start the API backend
+uvicorn api.main:app --port 8000 --reload
+
+# 2. Start the Next.js dev server
+cd ui
+npm install
+npm run dev
+```
+
+Access at `http://localhost:3000`
+
+For production:
+
+```bash
+cd ui
+npm run build
+npm start
+```
+

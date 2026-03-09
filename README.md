@@ -5,39 +5,43 @@ free image gen
 
 - [HART-Morphosis docs](docs/index.md)
 - [Enterprise-grade review & roadmap](docs/enterprise_roadmap.md)
+- [API Reference](docs/api_reference.md)
 
-## Export Parser
+## Quick Start
 
-This repository includes a tool to parse export files and extract files from `instruct/dir/` directories.
-
-### Usage
-
-Parse an export file (ZIP, TAR, or TAR.GZ) to extract files from `instruct/dir/` paths:
+### CLI
 
 ```bash
-python parse_export.py <export_file> [options]
+pip install -r requirements.txt
+python -m src.hart_morphosis.cli.main --prompt "face in galaxy" --zoom 4
 ```
 
-### Options
-
-- `-o, --output`: Output directory for extracted files (default: `./parsed_output`)
-- `-m, --manifest`: Path to save a JSON manifest of parsed files
-- `--no-extract`: List files without extracting them
-
-### Examples
+### FastAPI Backend
 
 ```bash
-# Parse a ZIP file and extract to default location
-python parse_export.py export.zip
-
-# Parse a TAR.GZ file and extract to custom directory
-python parse_export.py export.tar.gz -o /path/to/output
-
-# Parse and save a manifest file without extracting
-python parse_export.py export.zip --no-extract -m manifest.json
+pip install -r requirements.txt
+uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+# API docs at http://localhost:8000/docs
 ```
 
-### Requirements
+### Next.js UI
 
-- Python 3.6 or higher
-- No external dependencies (uses Python standard library)
+```bash
+# In one terminal — start the backend
+uvicorn api.main:app --port 8000 --reload
+
+# In another terminal — start the UI
+cd ui
+npm install
+npm run dev
+# Open http://localhost:3000
+```
+
+### Legacy Streamlit UI
+
+```bash
+cd web_ui
+streamlit run app.py
+# Open http://localhost:8501
+```
+

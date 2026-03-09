@@ -26,3 +26,11 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Next.js
+ui/node_modules/
+ui/.next/
+ui/.env.local
+
+# pytest
+.pytest_cache/
